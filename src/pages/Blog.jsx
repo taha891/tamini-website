@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useLang } from "../i18n/LanguageContext";
+import Seo from "../seo/Seo";
+import { PAGE_META } from "../seo/meta";
 
 const N = "#0B1F4D", G = "#6EC026";
 
@@ -67,11 +69,12 @@ export default function Blog() {
   const filtered = cat === 0 ? t.articles : t.articles.filter(a => a.cat === t.cats[cat]);
   const featured = t.articles.find(a => a.featured);
   const rest = filtered.filter(a => !a.featured);
+  const seoMeta = PAGE_META.blog[lang];
 
   return (
     <div dir={rtl ? "rtl" : "ltr"} style={{ fontFamily: rtl ? "'Cairo','Inter',sans-serif" : "'Inter',system-ui,sans-serif", color: "#1E293B", background: "#fff", minHeight: "80vh" }}>
+      <Seo title={seoMeta.title} description={seoMeta.description} path="/blog" />
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Cairo:wght@400;600;700;800&display=swap');
         .art-card{transition:all .25s}
         .art-card:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(11,31,77,.1);border-color:#6EC026}
       `}</style>
@@ -103,7 +106,7 @@ export default function Blog() {
               <p style={{ fontSize: 14, color: "rgba(255,255,255,.65)", lineHeight: 1.7, marginBottom: 20 }}>{featured.excerpt}</p>
               <span style={{ fontSize: 13, fontWeight: 700, color: G }}>{t.readMore} →</span>
             </div>
-            <img src="/images/photo-woman-tablet.webp" alt={featured.title} style={{ width: "100%", height: "100%", minHeight: 240, objectFit: "cover" }} />
+            <img src="/images/photo-woman-tablet.webp" alt={featured.title} loading="lazy" width="600" height="400" style={{ width: "100%", height: "100%", minHeight: 240, objectFit: "cover" }} />
           </div>
         )}
 

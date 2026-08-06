@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useParams, Navigate, Link } from "react-router-dom";
 import { PRODUCTS } from "../i18n/products";
 import { useLang } from "../i18n/LanguageContext";
+import Seo, { serviceSchema, breadcrumbSchema } from "../seo/Seo";
+import { PRODUCT_META } from "../seo/meta";
 
 const N = "#0B1F4D", G = "#6EC026";
 const WA_BOT = "25377094141", WA_COM = "25377239292";
@@ -30,10 +32,32 @@ export default function ProductPage() {
   const wa = (msg) => `https://wa.me/${waNum}?text=${encodeURIComponent(msg)}`;
   const heroImg = `/images/${product.hero}.webp`;
   const backLink = product.segment === "particuliers" ? "/particuliers" : "/entreprises";
+  const pagePath = `/${product.segment}/${slug}`;
+  const seoMeta = (PRODUCT_META[slug] && PRODUCT_META[slug][lang]) || {
+    title: `${t.badge} | Tamini Insurance SA`,
+    description: t.hook,
+  };
 
   return (
     <div dir={rtl ? "rtl" : "ltr"} style={{ fontFamily: rtl ? "'Cairo','Inter',sans-serif" : "'Inter',system-ui,sans-serif", color: "#1E293B", background: "#fff" }}>
-      <style>{`@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700;800&family=Cairo:wght@400;600;700;800&display=swap');`}</style>
+      <Seo
+        title={seoMeta.title}
+        description={seoMeta.description}
+        path={pagePath}
+        image={heroImg}
+        type="product"
+        schema={{
+          "@context": "https://schema.org",
+          "@graph": [
+            serviceSchema({ name: t.badge, description: seoMeta.description, path: pagePath }),
+            breadcrumbSchema([
+              { name: "Accueil", path: "/" },
+              { name: product.segment === "particuliers" ? "Particuliers" : "Entreprises", path: backLink },
+              { name: t.badge, path: pagePath },
+            ]),
+          ],
+        }}
+      />
 
       {/* 1. HERO */}
       <section style={{ position: "relative", minHeight: 480, display: "flex", alignItems: "center", overflow: "hidden", background: N }}>

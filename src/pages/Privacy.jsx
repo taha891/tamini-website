@@ -1,5 +1,7 @@
 import React from "react";
 import { useLang } from "../i18n/LanguageContext";
+import Seo from "../seo/Seo";
+import { PAGE_META } from "../seo/meta";
 
 const N = "#0B1F4D";
 
@@ -66,10 +68,11 @@ const P = {
 export default function Privacy() {
   const { lang, rtl } = useLang();
   const t = P[lang];
+  const seoMeta = PAGE_META.privacy[lang];
 
   return (
     <div dir={rtl ? "rtl" : "ltr"} style={{ fontFamily: rtl ? "'Cairo','Inter',sans-serif" : "'Inter',system-ui,sans-serif", color: "#1E293B", background: "#fff", minHeight: "80vh" }}>
-      <style>{`@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700&family=Cairo:wght@400;600;700&display=swap');`}</style>
+      <Seo title={seoMeta.title} description={seoMeta.description} path="/confidentialite" />
 
       <div style={{ background: `linear-gradient(135deg,${N},#0d2a5e)`, padding: "64px 24px 56px", textAlign: "center" }}>
         <h1 style={{ fontFamily: rtl ? "'Cairo',sans-serif" : "'Playfair Display',serif", fontSize: "clamp(28px,4vw,42px)", fontWeight: 800, color: "#fff", marginBottom: 14 }}>{t.title}</h1>

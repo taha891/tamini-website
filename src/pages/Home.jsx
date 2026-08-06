@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLang } from "../i18n/LanguageContext";
 import { PRODUCTS, PARTICULIERS, ENTREPRISES } from "../i18n/products";
+import Seo, { organizationSchema } from "../seo/Seo";
+import { PAGE_META } from "../seo/meta";
 
 const N = "#0B1F4D", G = "#6EC026";
 const WA_BOT = "25377094141", WA_COM = "25377239292";
@@ -206,10 +208,12 @@ export default function Home() {
   const S = curProduct[lang];
   const surplusData = [{ y: "2022", v: 13 }, { y: "2023", v: 22 }, { y: "2024", v: 27 }, { y: "2025", v: 38 }];
 
+  const meta = PAGE_META.home[lang];
+
   return (
     <div dir={rtl ? "rtl" : "ltr"} style={{ fontFamily: rtl ? "'Cairo','Inter',sans-serif" : "'Inter',system-ui,sans-serif", color: "#1E293B", background: "#fff" }}>
+      <Seo title={meta.title} description={meta.description} path="/" schema={organizationSchema} />
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=Cairo:wght@400;600;700;800&display=swap');
         @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
         @keyframes fadeDown{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:translateY(0)}}
         @keyframes wordUp{from{opacity:0;transform:translateY(110%)}to{opacity:1;transform:translateY(0)}}
@@ -381,7 +385,7 @@ export default function Home() {
       <section style={{ background: "#fff", padding: "76px 20px" }}>
         <div style={{ maxWidth: 1050, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", gap: 44, alignItems: "center" }}>
           <div style={{ borderRadius: 20, overflow: "hidden", boxShadow: "0 20px 60px rgba(11,31,77,.12)", position: "relative" }}>
-            <img src="/images/hero-auto.webp" alt="Assistance routière option Djibouti" style={{ width: "100%", display: "block", objectFit: "cover", height: 320 }} />
+            <img src="/images/hero-auto.webp" alt="Véhicule sur une route côtière de Djibouti — assistance routière Tamini disponible en option 24h/24" style={{ width: "100%", display: "block", objectFit: "cover", height: 320 }} />
             <div style={{ position: "absolute", top: 14, insetInlineStart: 14, padding: "7px 16px", background: G, borderRadius: 50, fontSize: 12, fontWeight: 800, color: "#fff" }}>OPTION</div>
           </div>
           <div>
@@ -453,7 +457,7 @@ export default function Home() {
       {/* FINAL CTA */}
       <section style={{ background: "#F8FAFF", padding: "80px 20px" }}>
         <div style={{ maxWidth: 620, margin: "0 auto", textAlign: "center" }}>
-          <img src="/images/logo.png" alt="Tamini" style={{ width: 56, marginBottom: 18 }} />
+          <img src="/images/logo.png" alt="Logo Tamini Insurance SA" width="56" height="56" style={{ width: 56, marginBottom: 18 }} />
           <h2 style={{ fontFamily: rtl ? "'Cairo',sans-serif" : "'Playfair Display',serif", fontSize: "clamp(28px,4.4vw,42px)", fontWeight: 900, color: N, lineHeight: 1.2 }}>
             {t.cta.t1}<br /><span style={{ color: G }}>{t.cta.t2}</span>
           </h2>

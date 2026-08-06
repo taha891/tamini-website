@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { PRODUCTS, PARTICULIERS, ENTREPRISES } from "../i18n/products";
 import { useLang } from "../i18n/LanguageContext";
+import Seo, { breadcrumbSchema } from "../seo/Seo";
+import { PAGE_META } from "../seo/meta";
 
 const N = "#0B1F4D", G = "#6EC026";
 
@@ -28,10 +30,19 @@ export default function Hub({ segment }) {
   const ui = UI[lang];
   const meta = ui[segment];
   const slugs = segment === "particuliers" ? PARTICULIERS : ENTREPRISES;
+  const seoMeta = PAGE_META[segment][lang];
 
   return (
     <div dir={rtl ? "rtl" : "ltr"} style={{ fontFamily: rtl ? "'Cairo','Inter',sans-serif" : "'Inter',system-ui,sans-serif", color: "#1E293B", background: "#fff", minHeight: "80vh" }}>
-      <style>{`@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700&family=Cairo:wght@400;600;700;800&display=swap');`}</style>
+      <Seo
+        title={seoMeta.title}
+        description={seoMeta.description}
+        path={`/${segment}`}
+        schema={breadcrumbSchema([
+          { name: "Accueil", path: "/" },
+          { name: meta.title, path: `/${segment}` },
+        ])}
+      />
 
       {/* Header band */}
       <div style={{ background: `linear-gradient(135deg,${N},#0d2a5e)`, padding: "64px 24px 56px", textAlign: "center" }}>

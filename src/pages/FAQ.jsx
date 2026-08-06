@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useLang } from "../i18n/LanguageContext";
+import Seo, { faqSchema } from "../seo/Seo";
+import { PAGE_META } from "../seo/meta";
 
 const N = "#0B1F4D", G = "#6EC026";
 
@@ -207,10 +209,11 @@ export default function FAQ() {
 
   const allItems = Object.entries(t.items).flatMap(([c, arr]) => arr.map(it => ({ ...it, cat: c })));
   const filtered = q.trim() ? allItems.filter(it => it.q.toLowerCase().includes(q.toLowerCase()) || it.a.toLowerCase().includes(q.toLowerCase())) : t.items[cat];
+  const seoMeta = PAGE_META.faq[lang];
 
   return (
     <div dir={rtl ? "rtl" : "ltr"} style={{ fontFamily: rtl ? "'Cairo','Inter',sans-serif" : "'Inter',system-ui,sans-serif", color: "#1E293B", background: "#fff", minHeight: "80vh" }}>
-      <style>{`@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700&family=Cairo:wght@400;600;700;800&display=swap');`}</style>
+      <Seo title={seoMeta.title} description={seoMeta.description} path="/faq" schema={faqSchema(allItems)} />
 
       <div style={{ position: "relative", background: N, padding: "64px 24px 48px", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, backgroundImage: "url(/images/photo-services.webp)", backgroundSize: "cover", backgroundPosition: "center 20%", opacity: 0.18 }} />
