@@ -118,7 +118,7 @@ export default function Header() {
       <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: 66, padding: "0 20px" }}>
         {/* Logo */}
         <Link to="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
-          <img src="/images/logo.png" alt="Tamini Insurance" style={{ width: 40, height: 40, objectFit: "contain" }} />
+          <img src="/images/logo.png" alt="Tamini Insurance SA — Assurance Takaful Djibouti" style={{ width: 40, height: 40, objectFit: "contain" }} />
           <div>
             <div style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: 18, color: onDark ? "#fff" : "#0B1F4D", lineHeight: 1, letterSpacing: 1 }}>TAMINI</div>
             <div style={{ fontSize: 8, fontWeight: 700, color: onDark ? "rgba(255,255,255,0.7)" : "#6EC026", letterSpacing: 2 }}>INSURANCE SA</div>

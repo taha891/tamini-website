@@ -54,7 +54,7 @@ export default function Footer() {
           {/* Brand + contact */}
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
-              <img src="/images/logo.png" alt="Tamini" style={{ width: 34, height: 34, objectFit: "contain" }} />
+              <img src="/images/logo.png" alt="Tamini Insurance SA — Assurance Takaful Djibouti" style={{ width: 34, height: 34, objectFit: "contain" }} />
               <div>
                 <div style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: 15, color: "#fff" }}>TAMINI</div>
                 <div style={{ fontSize: 7.5, fontWeight: 700, color: "rgba(255,255,255,0.4)", letterSpacing: 2 }}>INSURANCE SA</div>
