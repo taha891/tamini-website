@@ -23,11 +23,11 @@ const F = {
       takaful: [
         { q: "C'est quoi le Takaful ?", a: "Le Takaful est une assurance islamique fondée sur la solidarité mutuelle. Vos cotisations alimentent un fonds commun destiné à protéger tous les participants. Contrairement à l'assurance classique, ce modèle exclut l'intérêt (Riba), la spéculation (Maysir) et l'incertitude excessive (Gharar)." },
         { q: "L'assurance est-elle halal ou haram ?", a: "L'assurance conventionnelle pose question pour de nombreux savants en raison du Riba et du Gharar qu'elle comporte. Le Takaful résout ce problème en mutualisant les cotisations dans un fonds solidaire, sans intérêt, sous supervision d'un comité Charia — c'est pourquoi Tamini est certifié par le comité Al-Azhar." },
-        { q: "Quelle différence entre Takaful et assurance classique ?", a: "Dans l'assurance classique, l'excédent du fonds devient le profit de la compagnie. Dans le Takaful, cet excédent est redistribué aux participants (55%) et à l'opérateur (45%) selon le modèle Mudaraba. Vous êtes copropriétaire du fonds, pas seulement client." },
-        { q: "Comment fonctionne la redistribution du surplus ?", a: "Chaque année, si le fonds Takaful dégage un excédent après paiement de tous les sinistres, une partie est reversée aux participants éligibles. En 2025, Tamini a redistribué 38 millions FDJ à ses membres." },
+        { q: "Quelle différence entre Takaful et assurance classique ?", a: "Dans l'assurance classique, l'excédent du fonds devient le profit de la compagnie. Dans le Takaful, cet excédent est redistribué entre les participants et l'opérateur selon le modèle Mudaraba. Vous êtes copropriétaire du fonds, pas seulement client." },
+        { q: "Comment fonctionne la redistribution du surplus ?", a: "Chaque année, si le fonds Takaful dégage un excédent après paiement de tous les sinistres, une partie est reversée aux participants éligibles." },
         { q: "Qui certifie la conformité Charia de Tamini ?", a: "Tamini opère sous la supervision d'un comité Charia et applique une certification alignée sur les standards internationaux, incluant une validation Al-Azhar pour la structuration Wakala/Mudaraba de nos produits." },
         { q: "Que signifient Riba, Gharar et Maysir ?", a: "Ce sont les trois interdits fondamentaux de la finance islamique : le Riba est l'intérêt ou l'usure, le Gharar est l'incertitude excessive sur l'objet du contrat, et le Maysir est la spéculation ou le hasard. Le modèle Takaful est structuré pour éliminer ces trois éléments à chaque étape." },
-        { q: "Comment fonctionne le modèle Wakala/Mudaraba en pratique ?", a: "Wakala désigne le mandat de gestion : Tamini gère le fonds des participants contre des frais fixes et transparents (35% de la cotisation). Mudaraba désigne le partage du profit : le surplus généré par les placements et l'excédent technique du fonds sont partagés selon une clé définie (55% participants / 45% opérateur)." },
+        { q: "Comment fonctionne le modèle Wakala/Mudaraba en pratique ?", a: "Wakala désigne le mandat de gestion : Tamini gère le fonds des participants contre des frais fixes et transparents (des frais connus à l'avance). Mudaraba désigne le partage du profit : le surplus généré par les placements et l'excédent technique du fonds sont partagés selon une clé définie." },
       ],
       produits: [
         { q: "Quels produits d'assurance proposez-vous ?", a: "Plus de 10 produits : Automobile, Habitation, Voyage, Éducation, Personnel & Groupe pour les particuliers ; Multirisque Pro, Maritime, RC Générale, Flotte, Chantier et Garantie de Bonne Exécution pour les entreprises." },
@@ -49,7 +49,7 @@ const F = {
       ],
       paiement: [
         { q: "Combien coûte une assurance auto à Djibouti ?", a: "Le tarif dépend du véhicule, de la formule choisie (RC seule ou tous risques) et du profil du conducteur. Contactez-nous sur WhatsApp pour un devis personnalisé et gratuit en quelques minutes." },
-        { q: "Comment obtenir un devis ?", a: "Le plus rapide : WhatsApp au 77 09 41 41 (particuliers) ou 77 23 92 92 (entreprises). Notre assistant répond généralement en moins de 5 minutes." },
+        { q: "Comment obtenir un devis ?", a: "Le plus rapide : WhatsApp au 77 09 41 41 (particuliers) ou 77 23 92 92 (entreprises). Le plus précis : notre formulaire de devis en 60 secondes, qui transmet directement vos informations au bon conseiller." },
         { q: "Quels sont vos moyens de paiement ?", a: "Espèces en agence, virement bancaire, et mobile money (WAAFI). Le paiement en ligne est en cours de déploiement." },
         { q: "Puis-je payer en plusieurs fois ?", a: "Des formules de paiement échelonné existent pour certains produits — demandez à votre conseiller lors du devis." },
       ],
@@ -87,11 +87,11 @@ const F = {
       takaful: [
         { q: "What is Takaful?", a: "Takaful is Islamic insurance based on mutual solidarity. Your contributions feed a common fund designed to protect all participants. Unlike conventional insurance, this model excludes interest (Riba), speculation (Maysir) and excessive uncertainty (Gharar)." },
         { q: "Is insurance halal or haram?", a: "Conventional insurance raises concerns for many scholars due to Riba and Gharar. Takaful solves this by pooling contributions in a solidarity fund, interest-free, under Sharia committee supervision — which is why Tamini is certified by the Al-Azhar committee." },
-        { q: "What's the difference between Takaful and conventional insurance?", a: "In conventional insurance, the fund surplus becomes company profit. In Takaful, this surplus is redistributed to participants (55%) and the operator (45%) under the Mudaraba model. You co-own the fund, not just a customer." },
-        { q: "How does surplus redistribution work?", a: "Every year, if the Takaful fund generates a surplus after all claims are paid, part is returned to eligible participants. In 2025, Tamini redistributed 38 million DJF to its members." },
+        { q: "What's the difference between Takaful and conventional insurance?", a: "In conventional insurance, the fund surplus becomes company profit. In Takaful, this surplus is redistributed between participants and the operator under the Mudaraba model. You co-own the fund, not just a customer." },
+        { q: "How does surplus redistribution work?", a: "Every year, if the Takaful fund generates a surplus after all claims are paid, part is returned to eligible participants." },
         { q: "Who certifies Tamini's Sharia compliance?", a: "Tamini operates under Sharia committee supervision and applies certification aligned with international standards, including Al-Azhar validation for the Wakala/Mudaraba structuring of our products." },
         { q: "What do Riba, Gharar and Maysir mean?", a: "These are the three fundamental prohibitions of Islamic finance: Riba is interest or usury, Gharar is excessive uncertainty about the contract's subject matter, and Maysir is speculation or chance. The Takaful model is structured to eliminate all three at every stage." },
-        { q: "How does the Wakala/Mudaraba model work in practice?", a: "Wakala refers to the management mandate: Tamini manages the participants' fund for a fixed, transparent fee (35% of contributions). Mudaraba refers to profit-sharing: surplus generated by investments and the fund's technical surplus are shared under a defined ratio (55% participants / 45% operator)." },
+        { q: "How does the Wakala/Mudaraba model work in practice?", a: "Wakala refers to the management mandate: Tamini manages the participants' fund for a fixed, transparent fee (fees known in advance). Mudaraba refers to profit-sharing: surplus generated by investments and the fund's technical surplus are shared under a defined ratio." },
       ],
       produits: [
         { q: "What insurance products do you offer?", a: "10+ products: Motor, Home, Travel, Education, Personal & Group for individuals; Business Multi-risk, Marine, General Liability, Fleet, Construction and Performance Bond for businesses." },
@@ -113,7 +113,7 @@ const F = {
       ],
       paiement: [
         { q: "How much does car insurance cost in Djibouti?", a: "The price depends on the vehicle, the plan chosen (TPL only or comprehensive) and the driver's profile. Contact us on WhatsApp for a free personalized quote in minutes." },
-        { q: "How do I get a quote?", a: "Fastest way: WhatsApp 77 09 41 41 (individuals) or 77 23 92 92 (business). Our assistant typically replies within 5 minutes." },
+        { q: "How do I get a quote?", a: "Fastest way: WhatsApp 77 09 41 41 (individuals) or 77 23 92 92 (business). Most precise: our 60-second quote form, which sends your details straight to the right advisor." },
         { q: "What payment methods do you accept?", a: "Cash in-agency, bank transfer, and mobile money (WAAFI). Online payment is being deployed." },
         { q: "Can I pay in installments?", a: "Installment plans exist for certain products — ask your advisor when getting your quote." },
       ],
@@ -151,11 +151,11 @@ const F = {
       takaful: [
         { q: "ما هو التكافل؟", a: "التكافل هو تأمين إسلامي قائم على التضامن المتبادل. اشتراكاتكم تغذي صندوقاً مشتركاً لحماية جميع المشاركين. وخلافاً للتأمين التقليدي، يستبعد هذا النموذج الربا والميسر والغرر المفرط." },
         { q: "هل التأمين حلال أم حرام؟", a: "يثير التأمين التقليدي تساؤلات لدى كثير من العلماء بسبب الربا والغرر. يحل التكافل هذه المشكلة بتجميع الاشتراكات في صندوق تضامني بدون فوائد، تحت إشراف هيئة شرعية — لهذا فإن تأميني معتمدة من هيئة الأزهر." },
-        { q: "ما الفرق بين التكافل والتأمين التقليدي؟", a: "في التأمين التقليدي، يصبح فائض الصندوق ربحاً للشركة. في التكافل، يُعاد توزيع هذا الفائض على المشاركين (55%) والمشغل (45%) وفق نموذج المضاربة. أنتم شركاء في ملكية الصندوق، لا مجرد عملاء." },
-        { q: "كيف تعمل إعادة توزيع الفائض؟", a: "كل عام، إذا حقق صندوق التكافل فائضاً بعد سداد جميع المطالبات، يُعاد جزء منه للمشاركين المؤهلين. في 2025، أعادت تأميني توزيع 38 مليون فرنك جيبوتي على أعضائها." },
+        { q: "ما الفرق بين التكافل والتأمين التقليدي؟", a: "في التأمين التقليدي، يصبح فائض الصندوق ربحاً للشركة. في التكافل، يُعاد توزيع هذا الفائض بين المشاركين والمشغل وفق نموذج المضاربة. أنتم شركاء في ملكية الصندوق، لا مجرد عملاء." },
+        { q: "كيف تعمل إعادة توزيع الفائض؟", a: "كل عام، إذا حقق صندوق التكافل فائضاً بعد سداد جميع المطالبات، يُعاد جزء منه للمشاركين المؤهلين." },
         { q: "من يعتمد التزام تأميني بالشريعة؟", a: "تعمل تأميني تحت إشراف هيئة شرعية وتطبق شهادات متوافقة مع المعايير الدولية، بما في ذلك اعتماد الأزهر لهيكلة الوكالة/المضاربة في منتجاتنا." },
         { q: "ماذا تعني الربا والغرر والميسر؟", a: "هذه هي المحظورات الثلاثة الأساسية في التمويل الإسلامي: الربا هو الفائدة، والغرر هو عدم اليقين المفرط بموضوع العقد، والميسر هو المضاربة أو الحظ. نموذج التكافل مُصمَّم لإلغاء هذه العناصر الثلاثة في كل مرحلة." },
-        { q: "كيف يعمل نموذج الوكالة/المضاربة عملياً؟", a: "الوكالة تعني تفويض الإدارة: تدير تأميني صندوق المشاركين مقابل رسوم ثابتة وشفافة (35% من الاشتراك). المضاربة تعني تقاسم الأرباح: يُقسَّم الفائض الناتج عن الاستثمارات والفائض الفني للصندوق وفق نسبة محددة (55% للمشاركين / 45% للمشغل)." },
+        { q: "كيف يعمل نموذج الوكالة/المضاربة عملياً؟", a: "الوكالة تعني تفويض الإدارة: تدير تأميني صندوق المشاركين مقابل رسوم ثابتة وشفافة (أجر معلوم مسبقاً). المضاربة تعني تقاسم الأرباح: يُقسَّم الفائض الناتج عن الاستثمارات والفائض الفني للصندوق وفق نسبة محددة." },
       ],
       produits: [
         { q: "ما هي منتجات التأمين التي تقدمونها؟", a: "أكثر من 10 منتجات: السيارات، المسكن، السفر، التعليم، الشخصي والجماعي للأفراد؛ متعدد المخاطر، البحري، المسؤولية المدنية العامة، الأسطول، المقاولات وضمان حسن التنفيذ للشركات." },
@@ -177,7 +177,7 @@ const F = {
       ],
       paiement: [
         { q: "كم تكلفة تأمين السيارات في جيبوتي؟", a: "يعتمد السعر على المركبة والصيغة المختارة (مسؤولية مدنية فقط أو شامل) وملف السائق. تواصلوا معنا عبر واتساب للحصول على عرض سعر مجاني ومخصص خلال دقائق." },
-        { q: "كيف أحصل على عرض سعر؟", a: "الأسرع: واتساب 77 09 41 41 (أفراد) أو 77 23 92 92 (شركات). يرد مساعدنا عادة خلال 5 دقائق." },
+        { q: "كيف أحصل على عرض سعر؟", a: "الأسرع: واتساب 77 09 41 41 (أفراد) أو 77 23 92 92 (شركات). الأدق: نموذج عرض السعر في 60 ثانية الذي ينقل معلوماتكم مباشرة إلى المستشار المناسب." },
         { q: "ما هي وسائل الدفع المتاحة؟", a: "نقداً في الوكالة، تحويل بنكي، والدفع عبر الهاتف المحمول (WAAFI). جارٍ نشر الدفع الإلكتروني." },
         { q: "هل يمكنني الدفع على دفعات؟", a: "توجد خطط دفع بالتقسيط لبعض المنتجات — اسألوا مستشاركم عند طلب العرض." },
       ],
@@ -257,7 +257,7 @@ export default function FAQ() {
 
         <div style={{ marginTop: 40, textAlign: "center", padding: "32px 24px", background: N, borderRadius: 18 }}>
           <p style={{ color: "#fff", fontSize: 15, fontWeight: 600, marginBottom: 16 }}>{lang === "fr" ? "Vous ne trouvez pas votre réponse ?" : lang === "en" ? "Can't find your answer?" : "لم تجد إجابتك؟"}</p>
-          <a href={`https://wa.me/25377094141?text=${encodeURIComponent(lang === "fr" ? "Bonjour, j'ai une question" : lang === "en" ? "Hello, I have a question" : "مرحباً، لدي سؤال")}`} target="_blank" rel="noopener noreferrer" style={{ padding: "13px 28px", background: G, color: "#fff", border: "none", borderRadius: 10, fontSize: 14, fontWeight: 700, textDecoration: "none", display: "inline-block" }}>
+          <a href={`https://wa.me/25377094141?text=${encodeURIComponent(lang === "fr" ? "Bonjour, j'ai une question" : lang === "en" ? "Hello, I have a question" : "مرحباً، لدي سؤال")}`} target="_blank" rel="noopener noreferrer" style={{ padding: "13px 28px", background: G, color: N, border: "none", borderRadius: 10, fontSize: 14, fontWeight: 700, textDecoration: "none", display: "inline-block" }}>
             {lang === "fr" ? "💬 Discuter sur WhatsApp" : lang === "en" ? "💬 Chat on WhatsApp" : "💬 تحدث عبر واتساب"}
           </a>
         </div>

@@ -12,18 +12,25 @@ export const LANGS = { fr: "FR", en: "EN", ar: "ع" };
 export const RTL_LANGS = ["ar"];
 
 export function LanguageProvider({ children }) {
+  // Priorité : ?lang= dans l'URL (liens partagés, hreflang, campagnes)
+  // > choix mémorisé > français par défaut.
   const [lang, setLangState] = useState(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("tamini_lang") || "fr";
-    }
+    if (typeof window === "undefined") return "fr";
+    const fromUrl = new URLSearchParams(window.location.search).get("lang");
+    if (fromUrl && LANGS[fromUrl]) return fromUrl;
+    try { const saved = localStorage.getItem("tamini_lang"); if (saved && LANGS[saved]) return saved; } catch (e) { /* stockage indisponible */ }
     return "fr";
   });
 
   const setLang = (l) => {
+    if (!LANGS[l]) return;
     setLangState(l);
-    if (typeof window !== "undefined") {
-      localStorage.setItem("tamini_lang", l);
-    }
+    if (typeof window === "undefined") return;
+    try { localStorage.setItem("tamini_lang", l); } catch (e) { /* stockage indisponible */ }
+    // URL partageable dans la langue affichée (fr = URL sans paramètre)
+    const url = new URL(window.location.href);
+    if (l === "fr") url.searchParams.delete("lang"); else url.searchParams.set("lang", l);
+    window.history.replaceState(window.history.state, "", url.pathname + url.search + url.hash);
   };
 
   const dir = RTL_LANGS.includes(lang) ? "rtl" : "ltr";

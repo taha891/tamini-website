@@ -1,228 +1,137 @@
-import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { useFunnel } from "../funnel/FunnelContext";
 import { useLang, LANGS } from "../i18n/LanguageContext";
+import { PHONE } from "../config/site";
 
 const NAV = {
   fr: {
-    particuliers: "Particuliers",
-    entreprises: "Entreprises",
-    takaful: "Le Takaful",
-    group: "Le Groupe",
-    faq: "FAQ",
-    blog: "Blog",
-    quote: "Devis gratuit",
-    // sous-menus
-    subP: [
-      ["Assurance Automobile", "/particuliers/auto"],
-      ["Assurance Habitation", "/particuliers/habitation"],
-      ["Assurance Voyage", "/particuliers/voyage"],
-      ["Takaful Éducation", "/particuliers/education"],
-      ["Accidents & Groupe", "/particuliers/accidents"],
-    ],
-    subE: [
-      ["Multirisque Professionnelle", "/entreprises/multirisque"],
-      ["Responsabilité Civile", "/entreprises/rc"],
-      ["Assurance Maritime", "/entreprises/maritime"],
-      ["Flotte Automobile", "/entreprises/flotte"],
-      ["Assurance Chantier", "/entreprises/chantier"],
-      ["Garantie Bonne Exécution", "/entreprises/bond"],
-    ],
+    tag: "Première assurance Takaful agréée à Djibouti",
+    call: "Appeler", claim: "Déclarer un sinistre", agencies: "Nos agences",
+    particuliers: "Particuliers", entreprises: "Entreprises", takaful: "Le Takaful", claims: "Sinistres",
+    contact: "Contact", about: "À propos", resources: "Ressources",
+    advisor: "Parler à un conseiller", quote: "Demander un devis", quoteShort: "Devis", menu: "Menu",
+    subP: [["Assurance automobile", "/particuliers/auto"], ["Assurance habitation", "/particuliers/habitation"], ["Assurance voyage", "/particuliers/voyage"], ["Takaful Éducation", "/particuliers/education"], ["Accidents personnels", "/particuliers/accidents"]],
+    subE: [["Solutions par secteur", "/entreprises/solutions"], ["Multirisque entreprise", "/entreprises/multirisque"], ["Responsabilité civile", "/entreprises/rc"], ["Maritime & marchandises", "/entreprises/maritime"], ["Flotte automobile", "/entreprises/flotte"], ["Assurance chantier", "/entreprises/chantier"], ["Garantie de bonne exécution", "/entreprises/bond"]],
+    subR: [["À propos de Tamini", "/a-propos"], ["Nos agences", "/agences"], ["Guides & articles", "/blog"], ["Questions fréquentes", "/faq"], ["Partenaires & courtiers", "/partenaires"]],
+    allP: "Toutes les assurances particuliers", allE: "Toutes les assurances entreprises",
   },
   en: {
-    particuliers: "Individuals",
-    entreprises: "Business",
-    takaful: "Takaful",
-    group: "The Group",
-    faq: "FAQ",
-    blog: "Blog",
-    quote: "Free quote",
-    subP: [
-      ["Motor Insurance", "/particuliers/auto"],
-      ["Home Insurance", "/particuliers/habitation"],
-      ["Travel Insurance", "/particuliers/voyage"],
-      ["Education Takaful", "/particuliers/education"],
-      ["Accidents & Group", "/particuliers/accidents"],
-    ],
-    subE: [
-      ["Business Multi-risk", "/entreprises/multirisque"],
-      ["General Liability", "/entreprises/rc"],
-      ["Marine Insurance", "/entreprises/maritime"],
-      ["Motor Fleet", "/entreprises/flotte"],
-      ["Construction Insurance", "/entreprises/chantier"],
-      ["Performance Bond", "/entreprises/bond"],
-    ],
+    tag: "Djibouti's first licensed Takaful insurer",
+    call: "Call", claim: "Report a claim", agencies: "Our branches",
+    particuliers: "Individuals", entreprises: "Business", takaful: "Takaful", claims: "Claims",
+    contact: "Contact", about: "About us", resources: "Resources",
+    advisor: "Talk to an advisor", quote: "Get a quote", quoteShort: "Quote", menu: "Menu",
+    subP: [["Motor insurance", "/particuliers/auto"], ["Home insurance", "/particuliers/habitation"], ["Travel insurance", "/particuliers/voyage"], ["Education Takaful", "/particuliers/education"], ["Personal accident", "/particuliers/accidents"]],
+    subE: [["Solutions by sector", "/entreprises/solutions"], ["Business multi-risk", "/entreprises/multirisque"], ["General liability", "/entreprises/rc"], ["Marine & cargo", "/entreprises/maritime"], ["Motor fleet", "/entreprises/flotte"], ["Construction insurance", "/entreprises/chantier"], ["Performance bond", "/entreprises/bond"]],
+    subR: [["About Tamini", "/a-propos"], ["Our branches", "/agences"], ["Guides & articles", "/blog"], ["FAQ", "/faq"], ["Partners & brokers", "/partenaires"]],
+    allP: "All personal insurance", allE: "All business insurance",
   },
   ar: {
-    particuliers: "الأفراد",
-    entreprises: "الشركات",
-    takaful: "التكافل",
-    group: "المجموعة",
-    faq: "الأسئلة",
-    blog: "المدونة",
-    quote: "عرض سعر مجاني",
-    subP: [
-      ["تأمين السيارات", "/particuliers/auto"],
-      ["تأمين المسكن", "/particuliers/habitation"],
-      ["تأمين السفر", "/particuliers/voyage"],
-      ["تكافل التعليم", "/particuliers/education"],
-      ["الحوادث والمجموعات", "/particuliers/accidents"],
-    ],
-    subE: [
-      ["متعدد المخاطر", "/entreprises/multirisque"],
-      ["المسؤولية المدنية", "/entreprises/rc"],
-      ["التأمين البحري", "/entreprises/maritime"],
-      ["أسطول المركبات", "/entreprises/flotte"],
-      ["تأمين المقاولات", "/entreprises/chantier"],
-      ["ضمان حسن التنفيذ", "/entreprises/bond"],
-    ],
+    tag: "أول شركة تأمين تكافلي مرخصة في جيبوتي",
+    call: "اتصل", claim: "التصريح بمطالبة", agencies: "وكالاتنا",
+    particuliers: "الأفراد", entreprises: "الشركات", takaful: "التكافل", claims: "المطالبات",
+    contact: "اتصل بنا", about: "من نحن", resources: "موارد",
+    advisor: "تحدث إلى مستشار", quote: "اطلب عرض سعر", quoteShort: "عرض سعر", menu: "القائمة",
+    subP: [["تأمين السيارات", "/particuliers/auto"], ["تأمين المسكن", "/particuliers/habitation"], ["تأمين السفر", "/particuliers/voyage"], ["تكافل التعليم", "/particuliers/education"], ["الحوادث الشخصية", "/particuliers/accidents"]],
+    subE: [["حلول حسب القطاع", "/entreprises/solutions"], ["متعدد المخاطر للشركات", "/entreprises/multirisque"], ["المسؤولية المدنية", "/entreprises/rc"], ["البحري والبضائع", "/entreprises/maritime"], ["أسطول المركبات", "/entreprises/flotte"], ["تأمين المقاولات", "/entreprises/chantier"], ["ضمان حسن التنفيذ", "/entreprises/bond"]],
+    subR: [["عن تأميني", "/a-propos"], ["وكالاتنا", "/agences"], ["أدلة ومقالات", "/blog"], ["الأسئلة الشائعة", "/faq"], ["الشركاء والوسطاء", "/partenaires"]],
+    allP: "كل تأمينات الأفراد", allE: "كل تأمينات الشركات",
   },
 };
 
-const WA_BOT = "25377094141";
+const Icon = ({ d, size = 16 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={d} /></svg>
+);
+const I = {
+  phone: "M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z",
+  alert: "M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z",
+  pin: "M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z",
+  menu: "M3 6h18M3 12h18M3 18h18",
+  close: "M18 6 6 18M6 6l12 12",
+};
+
+function Dropdown({ label, items, footer }) {
+  const [open, setOpen] = useState(false);
+  const { pathname } = useLocation();
+  useEffect(() => setOpen(false), [pathname]);
+  return (
+    <div className={`dropdown${open ? " open" : ""}`} onMouseLeave={() => setOpen(false)}>
+      <button type="button" aria-expanded={open} onClick={() => setOpen((o) => !o)}>{label} ▾</button>
+      <div className="dropdown-panel">
+        {items.map(([l, to]) => <Link key={to} to={to}>{l}</Link>)}
+        {footer && <Link to={footer[1]} style={{ fontWeight: 700, color: "var(--lime-ink)" }}>{footer[0]} →</Link>}
+      </div>
+    </div>
+  );
+}
 
 export default function Header() {
-  const { lang, setLang, rtl } = useLang();
-  const t = NAV[lang];
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [dropdown, setDropdown] = useState(null);
-  const location = useLocation();
-
-  useEffect(() => {
-    const f = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", f, { passive: true });
-    return () => window.removeEventListener("scroll", f);
-  }, []);
-
-  useEffect(() => {
-    setMenuOpen(false);
-    setDropdown(null);
-  }, [location]);
-
-  const onDark = location.pathname === "/" && !scrolled;
+  const { lang, setLang } = useLang();
+  const t = NAV[lang] || NAV.fr;
+  const [menu, setMenu] = useState(false);
+  const { pathname } = useLocation();
+  const { openFunnel } = useFunnel();
+  useEffect(() => setMenu(false), [pathname]);
 
   return (
-    <header
-      dir={rtl ? "rtl" : "ltr"}
-      style={{
-        position: "sticky",
-        top: 0,
-        zIndex: 1000,
-        background: scrolled || location.pathname !== "/" ? "rgba(255,255,255,0.97)" : "transparent",
-        backdropFilter: scrolled ? "blur(14px)" : "none",
-        borderBottom: scrolled || location.pathname !== "/" ? "1px solid rgba(11,31,77,0.07)" : "none",
-        transition: "all 0.35s",
-        fontFamily: "'Inter', system-ui, sans-serif",
-      }}
-    >
-      <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: 66, padding: "0 20px" }}>
-        {/* Logo */}
-        <Link to="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
-          <img src="/images/logo.png" alt="Tamini Insurance SA — Assurance Takaful Djibouti" style={{ width: 40, height: 40, objectFit: "contain" }} />
-          <div>
-            <div style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: 18, color: onDark ? "#fff" : "#0B1F4D", lineHeight: 1, letterSpacing: 1 }}>TAMINI</div>
-            <div style={{ fontSize: 8, fontWeight: 700, color: onDark ? "rgba(255,255,255,0.7)" : "#6EC026", letterSpacing: 2 }}>INSURANCE SA</div>
-          </div>
-        </Link>
-
-        {/* Desktop nav */}
-        <nav style={{ display: "flex", alignItems: "center", gap: 4 }} className="tamini-desktop-nav">
-          {/* Particuliers dropdown */}
-          <div style={{ position: "relative" }} onMouseEnter={() => setDropdown("p")} onMouseLeave={() => setDropdown(null)}>
-            <button style={navBtn(onDark)}>{t.particuliers} ▾</button>
-            {dropdown === "p" && <DropMenu items={t.subP} rtl={rtl} />}
-          </div>
-          {/* Entreprises dropdown */}
-          <div style={{ position: "relative" }} onMouseEnter={() => setDropdown("e")} onMouseLeave={() => setDropdown(null)}>
-            <button style={navBtn(onDark)}>{t.entreprises} ▾</button>
-            {dropdown === "e" && <DropMenu items={t.subE} rtl={rtl} />}
-          </div>
-          <Link to="/faq" style={navBtn(onDark)}>{t.faq}</Link>
-          <Link to="/blog" style={navBtn(onDark)}>{t.blog}</Link>
-        </nav>
-
-        {/* Right side */}
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          {/* Language switch */}
-          <div style={{ display: "flex", borderRadius: 8, overflow: "hidden", border: `1px solid ${onDark ? "rgba(255,255,255,0.25)" : "rgba(11,31,77,0.12)"}` }}>
-            {Object.entries(LANGS).map(([l, label]) => (
-              <button key={l} onClick={() => setLang(l)} style={{
-                padding: "5px 12px", border: "none", fontSize: 12, fontWeight: 700, cursor: "pointer",
-                background: lang === l ? "#0B1F4D" : "transparent",
-                color: lang === l ? "#fff" : onDark ? "rgba(255,255,255,0.75)" : "#64748b",
-                transition: "all 0.2s",
-              }}>{label}</button>
-            ))}
-          </div>
-          <a href={`https://wa.me/${WA_BOT}`} target="_blank" rel="noopener noreferrer" style={{
-            padding: "9px 18px", background: "#6EC026", color: "#fff", borderRadius: 9,
-            fontSize: 13, fontWeight: 700, textDecoration: "none", whiteSpace: "nowrap",
-          }} className="tamini-desktop-nav">{t.quote}</a>
-          <button onClick={() => setMenuOpen(!menuOpen)} style={{ background: "none", border: "none", fontSize: 22, cursor: "pointer", color: onDark ? "#fff" : "#0B1F4D", padding: 4 }} className="tamini-mobile-toggle">{menuOpen ? "✕" : "☰"}</button>
+    <>
+      <a href="#main" className="skip-link">{lang === "en" ? "Skip to content" : lang === "ar" ? "انتقل إلى المحتوى" : "Aller au contenu"}</a>
+      <div className="topbar">
+        <div className="container">
+          <span className="hide-sm" style={{ opacity: .85 }}>{t.tag}</span>
+          <nav className="topbar-links" aria-label="Accès rapide">
+            <a href={`tel:${PHONE.intl}`} data-cta="topbar_phone"><Icon d={I.phone} /><span className="txt">{PHONE.display}</span></a>
+            <Link to="/sinistres#declarer"><Icon d={I.alert} /><span className="txt">{t.claim}</span></Link>
+            <Link to="/agences" className="hide-md"><Icon d={I.pin} /><span className="txt">{t.agencies}</span></Link>
+            <div className="langs" role="group" aria-label="Langue">
+              {Object.entries(LANGS).map(([k, v]) => (
+                <button key={k} type="button" aria-pressed={lang === k} onClick={() => setLang(k)} lang={k}>{v}</button>
+              ))}
+            </div>
+          </nav>
         </div>
       </div>
-
-      {/* Mobile menu */}
-      {menuOpen && (
-        <div style={{ background: "#fff", borderTop: "1px solid #f1f5f9", padding: "12px 20px 20px", display: "flex", flexDirection: "column", gap: 4 }}>
-          <MobileGroup title={t.particuliers} items={t.subP} />
-          <MobileGroup title={t.entreprises} items={t.subE} />
-          <Link to="/faq" style={mobileLink}>{t.faq}</Link>
-          <Link to="/blog" style={mobileLink}>{t.blog}</Link>
-          <a href={`https://wa.me/${WA_BOT}`} target="_blank" rel="noopener noreferrer" style={{ marginTop: 10, padding: "14px 24px", background: "#6EC026", color: "#fff", borderRadius: 10, fontSize: 15, fontWeight: 700, textAlign: "center", textDecoration: "none" }}>{t.quote}</a>
+      <header className="site-header">
+        <div className="container">
+          <Link to="/" className="brand" aria-label="Tamini Insurance — accueil">
+            <img src="/images/logo.png" alt="" width="42" height="42" />
+            <span><b>TAMINI</b><small>INSURANCE SA</small></span>
+          </Link>
+          <nav className="nav" aria-label="Navigation principale">
+            <Dropdown label={t.particuliers} items={t.subP} footer={[t.allP, "/particuliers"]} />
+            <Dropdown label={t.entreprises} items={t.subE} footer={[t.allE, "/entreprises"]} />
+            <NavLink to="/takaful">{t.takaful}</NavLink>
+            <NavLink to="/sinistres">{t.claims}</NavLink>
+            <NavLink to="/contact">{t.contact}</NavLink>
+            <Dropdown label={t.resources} items={t.subR} />
+          </nav>
+          <div className="header-cta">
+            <Link to="/contact" className="btn btn-ghost btn-sm">{t.advisor}</Link>
+            <button type="button" className="btn btn-lime btn-sm" onClick={() => openFunnel(null, "header")}>
+              <span className="only-desktop">{t.quote}</span><span className="only-mobile">{t.quoteShort}</span>
+            </button>
+            <button type="button" className="burger" aria-expanded={menu} aria-controls="mobile-menu" aria-label={t.menu} onClick={() => setMenu((m) => !m)}>
+              <Icon d={menu ? I.close : I.menu} size={24} />
+            </button>
+          </div>
         </div>
-      )}
-
-      <style>{`
-        @media (max-width: 900px) {
-          .tamini-desktop-nav { display: none !important; }
-        }
-        @media (min-width: 901px) {
-          .tamini-mobile-toggle { display: none !important; }
-        }
-      `}</style>
-    </header>
+        <div id="mobile-menu" className={`mobile-menu${menu ? " open" : ""}`}>
+          <div className="mm-head">{t.particuliers}</div>
+          {t.subP.map(([l, to]) => <Link key={to} to={to}>{l}</Link>)}
+          <div className="mm-head">{t.entreprises}</div>
+          {t.subE.map(([l, to]) => <Link key={to} to={to}>{l}</Link>)}
+          <div className="mm-head">Tamini</div>
+          <Link to="/takaful">{t.takaful}</Link>
+          <Link to="/sinistres">{t.claims}</Link>
+          <Link to="/contact">{t.contact}</Link>
+          {t.subR.map(([l, to]) => <Link key={to} to={to}>{l}</Link>)}
+          <div style={{ display: "grid", gap: 10, marginTop: 20 }}>
+            <button type="button" className="btn btn-lime" onClick={() => { setMenu(false); openFunnel(null, "menu_mobile"); }}>{t.quote}</button>
+            <a className="btn btn-ghost" href={`tel:${PHONE.intl}`} data-cta="menu_phone">{t.call} {PHONE.display}</a>
+          </div>
+        </div>
+      </header>
+    </>
   );
 }
-
-function navBtn(onDark) {
-  return {
-    background: "none", border: "none", cursor: "pointer",
-    color: onDark ? "rgba(255,255,255,0.9)" : "#1E293B",
-    fontSize: 14, fontWeight: 500, padding: "8px 12px", borderRadius: 8,
-    textDecoration: "none", fontFamily: "inherit",
-  };
-}
-
-function DropMenu({ items, rtl }) {
-  return (
-    <div style={{
-      position: "absolute", top: "100%", [rtl ? "right" : "left"]: 0,
-      background: "#fff", borderRadius: 12, boxShadow: "0 12px 32px rgba(11,31,77,0.12)",
-      border: "1px solid #eef1f5", padding: 8, minWidth: 230, zIndex: 100,
-    }}>
-      {items.map(([label, to]) => (
-        <Link key={to} to={to} style={{
-          display: "block", padding: "10px 14px", borderRadius: 8, fontSize: 13.5,
-          color: "#1E293B", textDecoration: "none", fontWeight: 500,
-        }}
-          onMouseEnter={e => e.currentTarget.style.background = "#f0f4ff"}
-          onMouseLeave={e => e.currentTarget.style.background = "transparent"}
-        >{label}</Link>
-      ))}
-    </div>
-  );
-}
-
-function MobileGroup({ title, items }) {
-  return (
-    <div style={{ borderBottom: "1px solid #f8fafc", paddingBottom: 8, marginBottom: 4 }}>
-      <div style={{ padding: "10px 8px 4px", fontSize: 12, fontWeight: 800, color: "#0B1F4D", textTransform: "uppercase", letterSpacing: 1 }}>{title}</div>
-      {items.map(([label, to]) => (
-        <Link key={to} to={to} style={{ display: "block", padding: "9px 16px", fontSize: 14, color: "#475569", textDecoration: "none" }}>{label}</Link>
-      ))}
-    </div>
-  );
-}
-
-const mobileLink = { padding: "12px 8px", borderBottom: "1px solid #f8fafc", fontSize: 15, fontWeight: 600, color: "#1E293B", textDecoration: "none" };

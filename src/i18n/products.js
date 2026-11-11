@@ -16,7 +16,7 @@ export const PRODUCTS = {
       h1: "Roulez protégé,", h2: "roulez serein.",
       hook: "Un accident à Djibouti peut détruire votre budget en une seconde. Choisissez la sécurité solidaire.",
       problem: "Un accident de la route n'engage pas seulement des dégâts sur votre voiture : il engage votre responsabilité civile. Sans assurance adéquate, un sinistre responsable peut vous endetter de plusieurs millions de FDJ envers des tiers, et immobiliser votre véhicule pour vos déplacements professionnels et familiaux.",
-      solution: "Tamini décline son assurance auto en formule Responsabilité Civile (obligatoire) et Tous Risques complète (vol, incendie, bris de glace, dommages à votre véhicule). Vous bénéficiez d'une assistance dépannage et remorquage 24h/24 et 7j/7. En l'absence de sinistre, vous récupérez une partie de votre cotisation grâce au partage du surplus.",
+      solution: "Tamini décline son assurance auto en formule Responsabilité Civile (obligatoire) et Tous Risques complète (vol, incendie, bris de glace, dommages à votre véhicule). L'assistance routière 24h/24 et 7j/7 (dépannage et remorquage) est disponible en option. En l'absence de sinistre, vous récupérez une partie de votre cotisation grâce au partage du surplus.",
       guarantees: [
         ["Responsabilité Civile obligatoire", "Dommages matériels et corporels causés aux tiers — jusqu'à 378 000 000 FDJ par sinistre corporel."],
         ["Dommages au véhicule", "Collision, versement ou accident, que vous soyez responsable ou non."],
@@ -33,7 +33,7 @@ export const PRODUCTS = {
       h1: "Drive protected,", h2: "drive serene.",
       hook: "One accident in Djibouti can wreck your budget in a second. Choose solidarity-based protection.",
       problem: "A road accident doesn't just damage your car — it engages your civil liability. Without proper insurance, an at-fault claim can leave you owing millions of FDJ to third parties, and immobilize your vehicle for work and family travel.",
-      solution: "Tamini offers motor insurance as Third-Party Liability (compulsory) and full Comprehensive (theft, fire, glass, damage to your vehicle). You get 24/7 breakdown and towing assistance. With no claims, you get part of your contribution back through surplus sharing.",
+      solution: "Tamini offers motor insurance as Third-Party Liability (compulsory) and full Comprehensive (theft, fire, glass, damage to your vehicle). 24/7 roadside assistance (breakdown and towing) is available as an option. With no claims, you get part of your contribution back through surplus sharing.",
       guarantees: [
         ["Compulsory Third-Party Liability", "Material and bodily damage to third parties — up to 378,000,000 FDJ per bodily claim."],
         ["Damage to your vehicle", "Collision, rollover or accident, whether you're at fault or not."],
@@ -50,7 +50,7 @@ export const PRODUCTS = {
       h1: "قُد بأمان،", h2: "قُد بطمأنينة.",
       hook: "حادث واحد في جيبوتي قد يدمّر ميزانيتك في ثانية. اختر الحماية التضامنية.",
       problem: "حادث الطريق لا يعني فقط أضراراً في سيارتك، بل يُحمّلك المسؤولية المدنية. بدون تأمين مناسب، قد تتحمّل ملايين الفرنكات تجاه الغير، وتتعطّل تنقلاتك المهنية والعائلية.",
-      solution: "يقدّم تأميني تأمين السيارات بصيغة المسؤولية المدنية (إلزامية) والشامل (سرقة، حريق، زجاج، أضرار سيارتك). تحصل على مساعدة على الطريق وسحب 24/7. وبدون مطالبات، تسترجع جزءاً من اشتراكك عبر مشاركة الفائض.",
+      solution: "يقدّم تأميني تأمين السيارات بصيغة المسؤولية المدنية (إلزامية) والشامل (سرقة، حريق، زجاج، أضرار سيارتك). مساعدة الطريق والسحب 24/7 متاحة كخيار إضافي. وبدون مطالبات، تسترجع جزءاً من اشتراكك عبر مشاركة الفائض.",
       guarantees: [
         ["المسؤولية المدنية الإلزامية", "أضرار مادية وجسدية للغير — حتى 378٬000٬000 فرنك لكل مطالبة جسدية."],
         ["أضرار سيارتك", "اصطدام أو انقلاب أو حادث، سواء كنت مسؤولاً أم لا."],
@@ -333,7 +333,7 @@ export const PRODUCTS = {
       h1: "تجارتك", h2: "هي دخلك.",
       hook: "تجارتك هي مصدر دخلك. أمّنها ضد صعوبات كل يوم.",
       problem: "يدخل عميل متجرك، يسقط المكيّف ويصيب رأسه. تكاليف طبية، هاتف مكسور، وفي أسوأ الحالات، وفاة — مسؤوليتك قائمة عن مبالغ كبيرة.",
-      solution: "يعوّض تأمين المسؤولية المدنية العامة من تأميني بسرعة تكلفة الضرر للغير، لتتمكّن من إعادة فتح أبوابك في أسرع وقت.",
+      solution: "يعوّض تأمين المسؤولية المدنية العامة من تأميني تكلفة الضرر للغير وفق شروط العقد، لتحمي نشاطك وسمعتك.",
       guarantees: [
         ["وفاة الغير", "تعويض إذا توفي عميل إثر حادث في منشأتك."],
         ["العجز", "تغطية العجز الجزئي أو الدائم أو الكلي لعميل مُصاب."],

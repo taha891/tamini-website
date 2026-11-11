@@ -1,39 +1,40 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import { useLang } from "../i18n/LanguageContext";
-
-const WA_BOT = "25377094141";
+import ConsentBanner, { RouteTracker } from "../tracking/ConsentBanner";
+import { WA_B2C, wa } from "../config/site";
 
 const WA_MSG = {
-  fr: "Bonjour, je souhaite un renseignement",
-  en: "Hello, I would like some information",
-  ar: "مرحباً، أريد معلومات",
+  fr: "Bonjour Tamini, je souhaite un renseignement.",
+  en: "Hello Tamini, I would like some information.",
+  ar: "مرحباً تأميني، أريد معلومات.",
 };
 
 export default function Layout({ children }) {
   const { lang, rtl } = useLang();
+  const { pathname, hash } = useLocation();
+  // Retour en haut à chaque page ; défilement vers l'ancre si #… dans l'URL.
+  useEffect(() => {
+    if (hash) {
+      const el = document.getElementById(hash.slice(1));
+      if (el) { el.scrollIntoView(); return; }
+    }
+    window.scrollTo(0, 0);
+  }, [pathname, hash]);
+  // Pages produit et devis : barre CTA mobile dédiée, on masque la bulle.
+  const hasStickyBar = /^\/(particuliers|entreprises)\/(?!solutions)[^/]+$/.test(pathname) || pathname.startsWith("/devis");
 
   return (
-    <div dir={rtl ? "rtl" : "ltr"} style={{ fontFamily: rtl ? "'Cairo', 'Inter', sans-serif" : "'Inter', system-ui, sans-serif" }}>
+    <div dir={rtl ? "rtl" : "ltr"} lang={lang}>
       <Header />
-      <main>{children}</main>
+      <main id="main" tabIndex={-1}>{children}</main>
       <Footer />
-
-      {/* Floating WhatsApp — present on every page */}
-      <a
-        href={`https://wa.me/${WA_BOT}?text=${encodeURIComponent(WA_MSG[lang])}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="WhatsApp"
-        style={{
-          position: "fixed", bottom: 20, [rtl ? "left" : "right"]: 20, zIndex: 999,
-          width: 56, height: 56, borderRadius: "50%", background: "#25D366",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          boxShadow: "0 4px 20px rgba(37,211,102,0.4)", textDecoration: "none",
-        }}
-      >
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.612.616l4.54-1.472A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.24 0-4.312-.726-5.994-1.957l-.42-.31-2.791.905.928-2.723-.34-.44A9.963 9.963 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
+      <RouteTracker />
+      <ConsentBanner />
+      <a href={wa(WA_B2C.number, WA_MSG[lang])} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" data-cta="floating_whatsapp" className={`float-wa${hasStickyBar ? " hide-mobile" : ""}`}>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.08-.13-.28-.2-.57-.35zM12 0a12 12 0 0 0-9.72 19.03L.79 23.5a.5.5 0 0 0 .61.62l4.54-1.48A12 12 0 1 0 12 0zm0 22a9.96 9.96 0 0 1-5.99-1.96l-.42-.31-2.79.9.93-2.72-.34-.44A9.96 9.96 0 1 1 12 22z"/></svg>
       </a>
     </div>
   );

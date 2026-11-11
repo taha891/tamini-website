@@ -1,109 +1,89 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useLang } from "../i18n/LanguageContext";
+import { AGENCIES, EMAIL, PHONE, SOCIAL, WA_B2B, WA_B2C, wa } from "../config/site";
 
 const F = {
   fr: {
     tagline: "Solidarité aujourd'hui, sérénité demain.",
-    colP: "Particuliers", colE: "Entreprises", colR: "Ressources",
-    p: [["Automobile", "/particuliers/auto"], ["Habitation", "/particuliers/habitation"], ["Voyage", "/particuliers/voyage"], ["Éducation", "/particuliers/education"], ["Accidents & Groupe", "/particuliers/accidents"]],
-    e: [["Multirisque Pro", "/entreprises/multirisque"], ["Responsabilité Civile", "/entreprises/rc"], ["Maritime", "/entreprises/maritime"], ["Flotte", "/entreprises/flotte"], ["Chantier", "/entreprises/chantier"], ["Garantie Bonne Exécution", "/entreprises/bond"]],
-    r: [["FAQ", "/faq"], ["Blog", "/blog"], ["Confidentialité", "/confidentialite"]],
-    addr: "Place du 27 Juin, Djibouti, R.D.",
-    contactTitle: "Contact",
-    legal: "© 2026 Tamini Insurance SA · Première assurance Takaful djiboutienne · Agréée ARSD",
-    followUs: "Suivez-nous",
+    about: "Tamini Insurance SA est la première compagnie d'assurance Takaful agréée en République de Djibouti, membre du groupe Salaam. Activité régulée par l'ARSD.",
+    colP: "Particuliers", colE: "Entreprises", colT: "Tamini", colC: "Contact & agences",
+    p: [["Automobile", "/particuliers/auto"], ["Habitation", "/particuliers/habitation"], ["Voyage", "/particuliers/voyage"], ["Éducation", "/particuliers/education"], ["Accidents personnels", "/particuliers/accidents"]],
+    e: [["Solutions par secteur", "/entreprises/solutions"], ["Multirisque", "/entreprises/multirisque"], ["Responsabilité civile", "/entreprises/rc"], ["Maritime & marchandises", "/entreprises/maritime"], ["Flotte automobile", "/entreprises/flotte"], ["Chantier", "/entreprises/chantier"], ["Bonne exécution", "/entreprises/bond"]],
+    t: [["À propos", "/a-propos"], ["Le Takaful expliqué", "/takaful"], ["Sinistres", "/sinistres"], ["Partenaires & courtiers", "/partenaires"], ["Guides & articles", "/blog"], ["Questions fréquentes", "/faq"]],
+    phone: "Standard", waB2C: "WhatsApp particuliers", waB2B: "WhatsApp entreprises",
+    legal: "Tamini Insurance SA · Djibouti", privacy: "Confidentialité", complaints: "Réclamations", follow: "Suivez-nous",
   },
   en: {
     tagline: "Solidarity today, serenity tomorrow.",
-    colP: "Individuals", colE: "Business", colR: "Resources",
-    p: [["Motor", "/particuliers/auto"], ["Home", "/particuliers/habitation"], ["Travel", "/particuliers/voyage"], ["Education", "/particuliers/education"], ["Accidents & Group", "/particuliers/accidents"]],
-    e: [["Business Multi-risk", "/entreprises/multirisque"], ["General Liability", "/entreprises/rc"], ["Marine", "/entreprises/maritime"], ["Fleet", "/entreprises/flotte"], ["Construction", "/entreprises/chantier"], ["Performance Bond", "/entreprises/bond"]],
-    r: [["FAQ", "/faq"], ["Blog", "/blog"], ["Privacy", "/confidentialite"]],
-    addr: "Place du 27 Juin, Djibouti",
-    contactTitle: "Contact",
-    legal: "© 2026 Tamini Insurance SA · Djibouti's first Takaful insurer · ARSD licensed",
-    followUs: "Follow us",
+    about: "Tamini Insurance SA is the first licensed Takaful insurance company in the Republic of Djibouti and a member of Salaam Group. Regulated by ARSD, Djibouti's insurance regulator.",
+    colP: "Individuals", colE: "Business", colT: "Tamini", colC: "Contact & branches",
+    p: [["Motor", "/particuliers/auto"], ["Home", "/particuliers/habitation"], ["Travel", "/particuliers/voyage"], ["Education", "/particuliers/education"], ["Personal accident", "/particuliers/accidents"]],
+    e: [["Solutions by sector", "/entreprises/solutions"], ["Multi-risk", "/entreprises/multirisque"], ["General liability", "/entreprises/rc"], ["Marine & cargo", "/entreprises/maritime"], ["Motor fleet", "/entreprises/flotte"], ["Construction", "/entreprises/chantier"], ["Performance bond", "/entreprises/bond"]],
+    t: [["About us", "/a-propos"], ["Takaful explained", "/takaful"], ["Claims", "/sinistres"], ["Partners & brokers", "/partenaires"], ["Guides & articles", "/blog"], ["FAQ", "/faq"]],
+    phone: "Switchboard", waB2C: "WhatsApp individuals", waB2B: "WhatsApp business",
+    legal: "Tamini Insurance SA · Djibouti", privacy: "Privacy", complaints: "Complaints", follow: "Follow us",
   },
   ar: {
     tagline: "تضامن اليوم، طمأنينة الغد.",
-    colP: "الأفراد", colE: "الشركات", colR: "الموارد",
-    p: [["السيارات", "/particuliers/auto"], ["المسكن", "/particuliers/habitation"], ["السفر", "/particuliers/voyage"], ["التعليم", "/particuliers/education"], ["الحوادث والمجموعات", "/particuliers/accidents"]],
-    e: [["متعدد المخاطر", "/entreprises/multirisque"], ["المسؤولية المدنية", "/entreprises/rc"], ["البحري", "/entreprises/maritime"], ["الأسطول", "/entreprises/flotte"], ["المقاولات", "/entreprises/chantier"], ["ضمان حسن التنفيذ", "/entreprises/bond"]],
-    r: [["الأسئلة الشائعة", "/faq"], ["المدونة", "/blog"], ["الخصوصية", "/confidentialite"]],
-    addr: "ساحة 27 يونيو، جيبوتي",
-    contactTitle: "اتصل بنا",
-    legal: "© 2026 Tamini Insurance SA · أول شركة تأمين تكافلي جيبوتية · مرخصة من ARSD",
-    followUs: "تابعونا",
+    about: "تأميني (Tamini Insurance SA) هي أول شركة تأمين تكافلي مرخصة في جمهورية جيبوتي، وعضو في مجموعة سلام. نشاطها خاضع لرقابة ARSD.",
+    colP: "الأفراد", colE: "الشركات", colT: "تأميني", colC: "الاتصال والوكالات",
+    p: [["السيارات", "/particuliers/auto"], ["المسكن", "/particuliers/habitation"], ["السفر", "/particuliers/voyage"], ["التعليم", "/particuliers/education"], ["الحوادث الشخصية", "/particuliers/accidents"]],
+    e: [["حلول حسب القطاع", "/entreprises/solutions"], ["متعدد المخاطر", "/entreprises/multirisque"], ["المسؤولية المدنية", "/entreprises/rc"], ["البحري والبضائع", "/entreprises/maritime"], ["الأسطول", "/entreprises/flotte"], ["المقاولات", "/entreprises/chantier"], ["حسن التنفيذ", "/entreprises/bond"]],
+    t: [["من نحن", "/a-propos"], ["شرح التكافل", "/takaful"], ["المطالبات", "/sinistres"], ["الشركاء والوسطاء", "/partenaires"], ["أدلة ومقالات", "/blog"], ["الأسئلة الشائعة", "/faq"]],
+    phone: "الهاتف", waB2C: "واتساب الأفراد", waB2B: "واتساب الشركات",
+    legal: "Tamini Insurance SA · جيبوتي", privacy: "الخصوصية", complaints: "الشكاوى", follow: "تابعونا",
   },
 };
 
-const SOCIAL = {
-  facebook: "https://www.facebook.com/Tamini.insurance",
-  linkedin: "https://www.linkedin.com/company/70424040/",
-};
-
 export default function Footer() {
-  const { lang, rtl } = useLang();
-  const t = F[lang];
-
+  const { lang } = useLang();
+  const t = F[lang] || F.fr;
+  const year = 2026;
+  const Col = ({ title, items }) => (
+    <div>
+      <h2>{title}</h2>
+      <ul>{items.map(([l, to]) => <li key={to}><Link to={to}>{l}</Link></li>)}</ul>
+    </div>
+  );
   return (
-    <footer dir={rtl ? "rtl" : "ltr"} style={{ background: "#040b18", padding: "56px 20px 28px", color: "rgba(255,255,255,0.5)", fontFamily: "'Inter', system-ui, sans-serif" }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 36, marginBottom: 40 }}>
-          {/* Brand + contact */}
+    <footer className="footer">
+      <div className="container">
+        <div className="footer-grid">
           <div>
-            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
-              <img src="/images/logo.png" alt="Tamini Insurance SA — Assurance Takaful Djibouti" style={{ width: 34, height: 34, objectFit: "contain" }} />
-              <div>
-                <div style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: 15, color: "#fff" }}>TAMINI</div>
-                <div style={{ fontSize: 7.5, fontWeight: 700, color: "rgba(255,255,255,0.4)", letterSpacing: 2 }}>INSURANCE SA</div>
-              </div>
-            </div>
-            <p style={{ fontSize: 13, fontStyle: rtl ? "normal" : "italic", color: "rgba(255,255,255,0.3)", marginBottom: 14, lineHeight: 1.6 }}>{t.tagline}</p>
-            <div style={{ fontSize: 12.5, lineHeight: 2 }}>
-              <div>📍 {t.addr}</div>
-              <div>📞 +253 21 35 04 03</div>
-              <div>💬 +253 77 09 41 41</div>
-              <div>✉️ info@tamini-insurance.com</div>
-            </div>
-            {/* Social */}
-            <div style={{ marginTop: 16 }}>
-              <div style={{ fontSize: 10, fontWeight: 700, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: 1, marginBottom: 8 }}>{t.followUs}</div>
-              <div style={{ display: "flex", gap: 10 }}>
-                <a href={SOCIAL.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" style={socialBtn}>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.7 4.53-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.49 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
-                </a>
-                <a href={SOCIAL.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" style={socialBtn}>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 01-2.07-2.07c0-1.14.93-2.07 2.07-2.07 1.14 0 2.07.93 2.07 2.07 0 1.14-.93 2.07-2.07 2.07zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.8 0 0 .78 0 1.75v20.5C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.75V1.75C24 .78 23.2 0 22.22 0z"/></svg>
-                </a>
-              </div>
+            <Link to="/" className="brand" style={{ marginBottom: 14 }}>
+              <img src="/images/logo.png" alt="" width="42" height="42" loading="lazy" />
+              <span><b style={{ color: "#fff" }}>TAMINI</b><small style={{ color: "var(--lime)" }}>INSURANCE SA</small></span>
+            </Link>
+            <p style={{ fontStyle: "italic", color: "#fff", margin: "12px 0" }}>{t.tagline}</p>
+            <p style={{ fontSize: 13.5, lineHeight: 1.7 }}>{t.about}</p>
+            <div style={{ display: "flex", gap: 10, marginTop: 14 }} aria-label={t.follow}>
+              <a href={SOCIAL.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="btn btn-sm btn-ghost" style={{ color: "#fff", borderColor: "rgba(255,255,255,.4)" }}>Facebook</a>
+              <a href={SOCIAL.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="btn btn-sm btn-ghost" style={{ color: "#fff", borderColor: "rgba(255,255,255,.4)" }}>LinkedIn</a>
             </div>
           </div>
-
-          <FooterCol title={t.colP} items={t.p} />
-          <FooterCol title={t.colE} items={t.e} />
-          <FooterCol title={t.colR} items={t.r} />
+          <Col title={t.colP} items={t.p} />
+          <Col title={t.colE} items={t.e} />
+          <Col title={t.colT} items={t.t} />
+          <div>
+            <h2>{t.colC}</h2>
+            <ul>
+              <li>{t.phone} : <a href={`tel:${PHONE.intl}`} data-cta="footer_phone">{PHONE.label}</a></li>
+              <li>{t.waB2C} : <a href={wa(WA_B2C.number)} target="_blank" rel="noopener noreferrer" data-cta="footer_wa_b2c">{WA_B2C.display}</a></li>
+              <li>{t.waB2B} : <a href={wa(WA_B2B.number)} target="_blank" rel="noopener noreferrer" data-cta="footer_wa_b2b">{WA_B2B.display}</a></li>
+              <li><a href={`mailto:${EMAIL}`}>{EMAIL}</a></li>
+              {AGENCIES.map((a) => <li key={a.id}><Link to="/agences">{a.name[lang] || a.name.fr}</Link></li>)}
+            </ul>
+          </div>
         </div>
-        <div style={{ borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: 20, fontSize: 11.5, textAlign: "center" }}>{t.legal}</div>
+        <div style={{ borderTop: "1px solid rgba(255,255,255,.12)", marginTop: 40, paddingTop: 20, display: "flex", flexWrap: "wrap", gap: 16, justifyContent: "space-between", fontSize: 13 }}>
+          <span>© {year} {t.legal}</span>
+          <span style={{ display: "flex", gap: 16 }}>
+            <Link to="/confidentialite">{t.privacy}</Link>
+            <Link to="/contact#reclamations">{t.complaints}</Link>
+          </span>
+        </div>
       </div>
     </footer>
   );
 }
-
-function FooterCol({ title, items }) {
-  return (
-    <div>
-      <h4 style={{ fontSize: 11, fontWeight: 700, color: "#fff", textTransform: "uppercase", letterSpacing: 1, marginBottom: 16 }}>{title}</h4>
-      {items.map(([label, to]) => (
-        <Link key={to} to={to} style={{ display: "block", fontSize: 12.5, marginBottom: 9, color: "rgba(255,255,255,0.5)", textDecoration: "none", lineHeight: 1.5 }}>{label}</Link>
-      ))}
-    </div>
-  );
-}
-
-const socialBtn = {
-  width: 32, height: 32, borderRadius: 8, background: "rgba(255,255,255,0.08)",
-  display: "flex", alignItems: "center", justifyContent: "center", color: "rgba(255,255,255,0.7)",
-  textDecoration: "none", transition: "all 0.2s",
-};

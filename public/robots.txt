@@ -3,11 +3,6 @@ User-agent: *
 Allow: /
 Disallow: /*?*utm_
 Disallow: /*?*fbclid
-
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
+Disallow: /*?*gclid
 
 Sitemap: https://tamini-website.vercel.app/sitemap.xml
